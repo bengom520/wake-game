@@ -1,0 +1,31 @@
+#:schema node_modules/wrangler/config-schema.json
+name = "wake-game"
+main = "workers/index.ts"
+compatibility_date = "2024-10-01"
+
+# ─── D1 数据库 ───
+[[d1_databases]]
+binding = "DB"
+database_name = "wake-game-db"
+database_id = "83f9ffa2-3571-45a1-b361-38adde4e7c05"
+
+# ─── R2 存储（美术资源）───
+[[r2_buckets]]
+binding = "ASSETS"
+bucket_name = "wake-game-assets"
+
+# ─── KV 缓存（hot data）───
+[[kv_namespaces]]
+binding = "CACHE"
+id = "635b36fd69134a6c9a09af28d574f07d"
+
+# ─── 环境变量 ───
+[vars]
+GAME_TITLE = "修仙：挂机觉醒"
+GAME_VERSION = "v1.0.0"
+GAME_DAY_MODE = "single_player"  # 未来多人化改 "multi_player"
+
+# ─── 自定义域名 ───
+# worker.dev 在大陆不可达，自定义域名 api.wake-game.bengom.xyz 已通过
+# Cloudflare 控制台（Workers → wake-game → 域 → 添加自定义域）添加，
+# 由控制台自动创建 DNS 记录与路由。此处不配置 custom_domains（顶层不被 wrangler 支持）。

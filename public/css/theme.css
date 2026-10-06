@@ -1,0 +1,125 @@
+/* 修仙：挂机觉醒 v1.0 主题（仙侠风，继承浅眠配色） */
+:root {
+  --jade: #2d7a6b;
+  --jade-light: #4a9d8a;
+  --jade-deep: #1d5a4d;
+  --gold: #d4a017;
+  --gold-light: #f0c040;
+  --bg: #f7f3ea;
+  --card: #ffffff;
+  --text: #2c2620;
+  --muted: #8a8078;
+  --danger: #c0392b;
+  --success: #27ae60;
+  --border: #e0d8c8;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+body {
+  font-family: 'Noto Serif SC', 'Songti SC', serif;
+  background: linear-gradient(160deg, var(--bg) 0%, #f0e9dc 100%);
+  background-attachment: fixed;
+  color: var(--text);
+  min-height: 100vh;
+}
+
+#app { max-width: 720px; margin: 0 auto; padding: 0 12px 24px; }
+
+/* ─── 登录页 ─── */
+.auth-page { min-height: 100vh; display: flex; align-items: center; justify-content: center; }
+.auth-card {
+  width: 100%; max-width: 360px; background: var(--card);
+  border-radius: 16px; padding: 28px 24px;
+  box-shadow: 0 8px 32px rgba(0,0,0,.08);
+  border: 1px solid var(--border);
+}
+.game-title { font-size: 26px; font-weight: 700; color: var(--jade-deep); text-align: center; letter-spacing: 2px; }
+.game-sub { font-size: 12px; color: var(--muted); text-align: center; margin-bottom: 20px; font-style: italic; }
+.auth-tabs { display: flex; gap: 8px; margin-bottom: 18px; }
+.auth-tabs button {
+  flex: 1; padding: 8px; border: 1px solid var(--border); background: var(--bg);
+  border-radius: 8px; cursor: pointer; font-size: 14px; font-family: inherit;
+}
+.auth-tabs button.active { background: var(--jade); color: #fff; border-color: var(--jade); }
+
+.auth-card label { display: block; margin-bottom: 12px; font-size: 13px; color: var(--jade-deep); }
+.auth-card input {
+  width: 100%; padding: 10px 12px; margin-top: 4px;
+  border: 1px solid var(--border); border-radius: 8px;
+  font-size: 15px; font-family: inherit; background: #fff;
+}
+.auth-card input:focus { outline: none; border-color: var(--jade); }
+.auth-msg { color: var(--danger); font-size: 13px; margin-bottom: 10px; text-align: center; }
+
+.btn-primary {
+  padding: 12px 20px; border: none; border-radius: 10px;
+  background: linear-gradient(135deg, var(--jade), var(--jade-light));
+  color: #fff; font-size: 16px; font-weight: 700; cursor: pointer;
+  font-family: inherit; box-shadow: 0 4px 12px rgba(45,122,107,.3);
+}
+.btn-primary:disabled { opacity: .5; cursor: not-allowed; }
+.btn-block { width: 100%; }
+.btn-sm { padding: 6px 12px; border: 1px solid var(--border); background: var(--card); border-radius: 6px; cursor: pointer; font-size: 12px; font-family: inherit; }
+
+/* ─── 顶栏 ─── */
+.top-bar {
+  display: flex; align-items: center; gap: 10px;
+  padding: 12px 0; border-bottom: 1px solid var(--border); margin-bottom: 14px;
+}
+.top-bar .nick { font-weight: 700; color: var(--jade-deep); font-size: 16px; }
+.top-bar .res { margin-left: auto; font-size: 14px; color: var(--gold); font-weight: 700; }
+
+/* ─── 主城宫格 ─── */
+.grid-menu { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 16px; }
+.grid-item {
+  padding: 14px 4px; border: 1px solid var(--border); border-radius: 12px;
+  background: var(--card); cursor: pointer; font-size: 15px; font-family: inherit;
+  line-height: 1.4; transition: transform .1s, box-shadow .1s;
+}
+.grid-item:active { transform: scale(.96); box-shadow: 0 2px 8px rgba(0,0,0,.1); }
+.grid-item small { display: block; font-size: 10px; color: var(--muted); margin-top: 2px; }
+
+.toast {
+  padding: 10px 14px; background: #fff8e1; border: 1px solid var(--gold);
+  border-radius: 8px; font-size: 13px; margin-bottom: 12px; color: var(--jade-deep);
+}
+
+/* ─── 面板 ─── */
+.panel { background: var(--card); border-radius: 12px; padding: 14px; border: 1px solid var(--border); }
+.panel h3 { font-size: 15px; color: var(--jade-deep); margin: 12px 0 8px; }
+.panel h3:first-child { margin-top: 0; }
+
+.hero-row, .bond-row, .chapter-row { display: flex; flex-wrap: wrap; gap: 8px; }
+.hero-chip {
+  display: flex; flex-direction: column; align-items: center; gap: 2px;
+  padding: 6px 10px; background: var(--bg); border-radius: 8px;
+  border: 1px solid var(--border); font-size: 12px;
+}
+.hero-chip img { width: 40px; height: 40px; object-fit: cover; border-radius: 6px; }
+.bond-chip {
+  padding: 5px 10px; background: #f5f5f5; border-radius: 12px;
+  font-size: 12px; color: var(--muted); border: 1px solid var(--border);
+}
+.bond-chip.active { background: #e6f4ea; color: var(--success); border-color: var(--success); font-weight: 700; }
+.chapter-chip { padding: 5px 10px; background: var(--bg); border-radius: 6px; font-size: 12px; border: 1px solid var(--border); }
+.muted { color: var(--muted); font-size: 12px; }
+
+/* ─── 战斗页 ─── */
+.battle-page { padding-top: 12px; }
+.battle-log {
+  background: var(--card); border-radius: 12px; padding: 14px;
+  border: 1px solid var(--border); max-height: 60vh; overflow-y: auto;
+  font-size: 13px; line-height: 1.8; margin-bottom: 14px;
+}
+.battle-log p { border-bottom: 1px dashed var(--border); padding-bottom: 4px; }
+.reward-box {
+  padding: 12px; background: #fff8e1; border: 1px solid var(--gold);
+  border-radius: 10px; margin-bottom: 14px; font-size: 14px; color: var(--jade-deep);
+}
+
+/* ─── 移动端适配 ─── */
+@media (max-width: 480px) {
+  .grid-menu { grid-template-columns: repeat(3, 1fr); }
+  .grid-item { font-size: 13px; padding: 12px 2px; }
+}
