@@ -1,4 +1,4 @@
-/* 修仙：挂机觉醒 v1.0 主题（仙侠风，继承浅眠配色） */
+/* ═══ 修仙：挂机觉醒 v2.0 主题 ═══ */
 :root {
   --jade: #2d7a6b;
   --jade-light: #4a9d8a;
@@ -12,13 +12,14 @@
   --danger: #c0392b;
   --success: #27ae60;
   --border: #e0d8c8;
+  --shadow: 0 4px 16px rgba(0,0,0,.08);
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 
 body {
   font-family: 'Noto Serif SC', 'Songti SC', serif;
-  background: linear-gradient(160deg, var(--bg) 0%, #f0e9dc 100%);
+  background: linear-gradient(160deg, var(--bg) 0%, #f0e9dc 50%, #e8dfc8 100%);
   background-attachment: fixed;
   color: var(--text);
   min-height: 100vh;
@@ -31,95 +32,289 @@ body {
 .auth-card {
   width: 100%; max-width: 360px; background: var(--card);
   border-radius: 16px; padding: 28px 24px;
-  box-shadow: 0 8px 32px rgba(0,0,0,.08);
+  box-shadow: 0 8px 32px rgba(0,0,0,.12);
   border: 1px solid var(--border);
+  animation: fadeIn .4s ease;
 }
-.game-title { font-size: 26px; font-weight: 700; color: var(--jade-deep); text-align: center; letter-spacing: 2px; }
-.game-sub { font-size: 12px; color: var(--muted); text-align: center; margin-bottom: 20px; font-style: italic; }
+.game-title { font-size: 28px; font-weight: 700; color: var(--jade-deep); text-align: center; letter-spacing: 4px; }
+.game-sub { font-size: 12px; color: var(--muted); text-align: center; margin-bottom: 20px; font-style: italic; letter-spacing: 1px; }
 .auth-tabs { display: flex; gap: 8px; margin-bottom: 18px; }
 .auth-tabs button {
-  flex: 1; padding: 8px; border: 1px solid var(--border); background: var(--bg);
+  flex: 1; padding: 10px; border: 1px solid var(--border); background: var(--bg);
   border-radius: 8px; cursor: pointer; font-size: 14px; font-family: inherit;
+  transition: all .2s;
 }
-.auth-tabs button.active { background: var(--jade); color: #fff; border-color: var(--jade); }
-
-.auth-card label { display: block; margin-bottom: 12px; font-size: 13px; color: var(--jade-deep); }
+.auth-tabs button.active { background: var(--jade); color: #fff; border-color: var(--jade); box-shadow: 0 2px 8px rgba(45,122,107,.3); }
+.auth-card label { display: block; margin-bottom: 12px; font-size: 13px; color: var(--jade-deep); font-weight: 600; }
 .auth-card input {
-  width: 100%; padding: 10px 12px; margin-top: 4px;
+  width: 100%; padding: 12px; margin-top: 4px;
   border: 1px solid var(--border); border-radius: 8px;
   font-size: 15px; font-family: inherit; background: #fff;
+  transition: border-color .2s;
 }
-.auth-card input:focus { outline: none; border-color: var(--jade); }
+.auth-card input:focus { outline: none; border-color: var(--jade); box-shadow: 0 0 0 3px rgba(45,122,107,.1); }
 .auth-msg { color: var(--danger); font-size: 13px; margin-bottom: 10px; text-align: center; }
 
+/* ─── 按钮 ─── */
 .btn-primary {
   padding: 12px 20px; border: none; border-radius: 10px;
   background: linear-gradient(135deg, var(--jade), var(--jade-light));
-  color: #fff; font-size: 16px; font-weight: 700; cursor: pointer;
+  color: #fff; font-size: 15px; font-weight: 700; cursor: pointer;
   font-family: inherit; box-shadow: 0 4px 12px rgba(45,122,107,.3);
+  transition: transform .1s, box-shadow .2s;
 }
+.btn-primary:active { transform: scale(.96); }
 .btn-primary:disabled { opacity: .5; cursor: not-allowed; }
+.btn-primary.gold { background: linear-gradient(135deg, var(--gold), var(--gold-light)); box-shadow: 0 4px 12px rgba(212,160,23,.3); }
 .btn-block { width: 100%; }
-.btn-sm { padding: 6px 12px; border: 1px solid var(--border); background: var(--card); border-radius: 6px; cursor: pointer; font-size: 12px; font-family: inherit; }
+.btn-sm {
+  padding: 6px 12px; border: 1px solid var(--border); background: var(--card);
+  border-radius: 6px; cursor: pointer; font-size: 12px; font-family: inherit;
+  transition: all .15s;
+}
+.btn-sm:active { transform: scale(.95); }
 
 /* ─── 顶栏 ─── */
 .top-bar {
   display: flex; align-items: center; gap: 10px;
   padding: 12px 0; border-bottom: 1px solid var(--border); margin-bottom: 14px;
 }
-.top-bar .nick { font-weight: 700; color: var(--jade-deep); font-size: 16px; }
-.top-bar .res { margin-left: auto; font-size: 14px; color: var(--gold); font-weight: 700; }
+.top-bar .nick { font-weight: 700; color: var(--jade-deep); font-size: 15px; }
+.top-bar .realm { font-size: 11px; color: var(--gold); background: #fff8e1; padding: 2px 8px; border-radius: 10px; }
+.top-bar .res { font-size: 13px; color: var(--gold); font-weight: 700; }
+.page-title { font-weight: 700; color: var(--jade-deep); font-size: 16px; flex: 1; text-align: center; }
 
 /* ─── 主城宫格 ─── */
-.grid-menu { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 16px; }
-.grid-item {
-  padding: 14px 4px; border: 1px solid var(--border); border-radius: 12px;
-  background: var(--card); cursor: pointer; font-size: 15px; font-family: inherit;
-  line-height: 1.4; transition: transform .1s, box-shadow .1s;
+.grid-menu {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 16px;
 }
-.grid-item:active { transform: scale(.96); box-shadow: 0 2px 8px rgba(0,0,0,.1); }
-.grid-item small { display: block; font-size: 10px; color: var(--muted); margin-top: 2px; }
+.grid-item {
+  padding: 16px 4px; border: 1px solid var(--border); border-radius: 12px;
+  background: var(--card); cursor: pointer; font-size: 13px; font-family: inherit;
+  line-height: 1.4; transition: transform .15s, box-shadow .2s;
+  display: flex; flex-direction: column; align-items: center; gap: 4px;
+}
+.grid-item:active { transform: scale(.95); box-shadow: 0 2px 12px rgba(0,0,0,.15); }
+.grid-icon { font-size: 28px; }
+.grid-item small { display: block; font-size: 10px; color: var(--muted); }
 
+/* ─── 挂机横幅 ─── */
+.afk-banner {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 12px 16px; margin-bottom: 14px;
+  background: linear-gradient(135deg, #fff8e1, #fff3cd);
+  border: 1px solid var(--gold); border-radius: 12px;
+  cursor: pointer; animation: pulse 2s infinite;
+}
+
+/* ─── Toast ─── */
 .toast {
   padding: 10px 14px; background: #fff8e1; border: 1px solid var(--gold);
   border-radius: 8px; font-size: 13px; margin-bottom: 12px; color: var(--jade-deep);
+  animation: slideDown .3s ease;
 }
 
 /* ─── 面板 ─── */
-.panel { background: var(--card); border-radius: 12px; padding: 14px; border: 1px solid var(--border); }
+.panel { background: var(--card); border-radius: 12px; padding: 14px; border: 1px solid var(--border); box-shadow: var(--shadow); }
 .panel h3 { font-size: 15px; color: var(--jade-deep); margin: 12px 0 8px; }
 .panel h3:first-child { margin-top: 0; }
 
+/* ─── 英雄 ─── */
 .hero-row, .bond-row, .chapter-row { display: flex; flex-wrap: wrap; gap: 8px; }
 .hero-chip {
   display: flex; flex-direction: column; align-items: center; gap: 2px;
-  padding: 6px 10px; background: var(--bg); border-radius: 8px;
-  border: 1px solid var(--border); font-size: 12px;
+  padding: 8px 12px; background: var(--bg); border-radius: 10px;
+  border: 2px solid var(--border); font-size: 12px; min-width: 60px;
 }
-.hero-chip img { width: 40px; height: 40px; object-fit: cover; border-radius: 6px; }
+.hero-avatar {
+  width: 40px; height: 40px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px; font-weight: 700; color: var(--jade-deep);
+}
+.hero-avatar-lg {
+  width: 56px; height: 56px; border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 24px; font-weight: 700; color: var(--jade-deep);
+}
+.hero-name { font-weight: 600; }
+.hero-lv { font-size: 10px; color: var(--muted); }
+
 .bond-chip {
   padding: 5px 10px; background: #f5f5f5; border-radius: 12px;
   font-size: 12px; color: var(--muted); border: 1px solid var(--border);
 }
 .bond-chip.active { background: #e6f4ea; color: var(--success); border-color: var(--success); font-weight: 700; }
-.chapter-chip { padding: 5px 10px; background: var(--bg); border-radius: 6px; font-size: 12px; border: 1px solid var(--border); }
 .muted { color: var(--muted); font-size: 12px; }
+
+/* ─── 英雄列表页 ─── */
+.hero-list { display: flex; flex-direction: column; gap: 10px; }
+.hero-card {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 12px; background: var(--card); border-radius: 12px;
+  border: 1px solid var(--border); border-top-width: 3px;
+  box-shadow: var(--shadow);
+}
+.hero-card-left { display: flex; align-items: center; gap: 12px; }
+.hero-card-name { font-weight: 700; font-size: 15px; }
+.hero-card-name small { font-size: 11px; font-weight: 400; }
+.hero-card-info { font-size: 11px; color: var(--muted); }
+.hero-card-lv { font-size: 12px; color: var(--jade); font-weight: 600; }
+.hero-card-actions { display: flex; flex-direction: column; gap: 6px; }
+
+/* ─── 上阵槽位 ─── */
+.deploy-slots { display: flex; gap: 8px; margin-bottom: 14px; justify-content: center; }
+.slot {
+  width: 60px; height: 60px; border: 2px dashed var(--border); border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 10px; color: var(--muted); background: var(--card);
+}
+
+/* ─── 抽卡 ─── */
+.gacha-panel { text-align: center; padding: 20px; }
+.gacha-pity { font-size: 13px; color: var(--muted); margin-bottom: 16px; }
+.gacha-actions { display: flex; gap: 12px; justify-content: center; margin-bottom: 12px; }
+.gacha-balance { font-size: 14px; color: var(--gold); font-weight: 700; }
+
+.gacha-cards { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin: 16px 0; }
+.gacha-card {
+  width: 80px; padding: 16px 8px; border-radius: 12px;
+  border: 2px solid; text-align: center;
+  animation: flipIn .5s ease;
+}
+.gacha-card-name { font-weight: 700; font-size: 14px; margin-bottom: 4px; }
+.gacha-card-quality { font-size: 12px; color: var(--muted); }
+.gacha-card-action { font-size: 10px; margin-top: 4px; }
 
 /* ─── 战斗页 ─── */
 .battle-page { padding-top: 12px; }
+.battle-arena {
+  display: flex; align-items: center; justify-content: space-around;
+  padding: 20px; margin-bottom: 16px;
+  background: linear-gradient(135deg, #f5f5f5, #e8e8e8);
+  border-radius: 12px;
+}
+.fighter { font-size: 14px; font-weight: 700; color: var(--jade-deep); }
+.fighter.enemy { color: var(--danger); }
+.vs { font-size: 20px; font-weight: 700; color: var(--gold); }
+
 .battle-log {
   background: var(--card); border-radius: 12px; padding: 14px;
-  border: 1px solid var(--border); max-height: 60vh; overflow-y: auto;
+  border: 1px solid var(--border); max-height: 50vh; overflow-y: auto;
   font-size: 13px; line-height: 1.8; margin-bottom: 14px;
 }
-.battle-log p { border-bottom: 1px dashed var(--border); padding-bottom: 4px; }
+.log-line {
+  border-bottom: 1px dashed var(--border); padding-bottom: 4px;
+  animation: slideIn .3s ease;
+}
 .reward-box {
   padding: 12px; background: #fff8e1; border: 1px solid var(--gold);
   border-radius: 10px; margin-bottom: 14px; font-size: 14px; color: var(--jade-deep);
 }
 
+/* ─── 藏品 ─── */
+.artifact-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+.artifact-card {
+  padding: 14px; background: var(--card); border-radius: 12px;
+  border: 1px solid var(--border); text-align: center;
+  box-shadow: var(--shadow);
+}
+.artifact-card.owned { border-color: var(--gold); background: #fffdf5; }
+.artifact-icon { font-size: 32px; margin-bottom: 8px; }
+.artifact-name { font-weight: 700; font-size: 14px; margin-bottom: 4px; }
+.artifact-effect { font-size: 11px; color: var(--muted); margin-bottom: 8px; }
+.artifact-lv { font-size: 12px; color: var(--gold); font-weight: 700; margin-bottom: 8px; }
+
+/* ─── 羁绊 ─── */
+.bond-list { display: flex; flex-direction: column; gap: 10px; }
+.bond-card {
+  padding: 14px; background: var(--card); border-radius: 12px;
+  border: 1px solid var(--border); box-shadow: var(--shadow);
+}
+.bond-card.owned { border-color: var(--success); background: #f0fff4; }
+.bond-name { font-weight: 700; font-size: 15px; margin-bottom: 4px; }
+.bond-members { font-size: 12px; color: var(--muted); margin-bottom: 4px; }
+.bond-effect { font-size: 13px; color: var(--gold); font-weight: 600; margin-bottom: 4px; }
+.bond-status { font-size: 12px; }
+
+/* ─── 商店 ─── */
+.shop-list { display: flex; flex-direction: column; gap: 10px; }
+.shop-card {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px; background: var(--card); border-radius: 12px;
+  border: 1px solid var(--border); box-shadow: var(--shadow);
+}
+.shop-name { font-weight: 700; font-size: 14px; }
+.shop-desc { font-size: 11px; color: var(--muted); margin: 4px 0; }
+.shop-limit { font-size: 11px; color: var(--gold); }
+
+/* ─── 任务 ─── */
+.task-list { display: flex; flex-direction: column; gap: 10px; }
+.task-card {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px; background: var(--card); border-radius: 12px;
+  border: 1px solid var(--border); box-shadow: var(--shadow);
+}
+.task-card.claimed { opacity: .6; }
+.task-name { font-weight: 700; font-size: 14px; }
+.task-desc { font-size: 11px; color: var(--muted); margin: 4px 0; }
+.task-progress { font-size: 12px; color: var(--jade); font-weight: 600; }
+.task-reward { font-size: 11px; color: var(--gold); margin-top: 2px; }
+
+/* ─── 章节 ─── */
+.chapter-list { display: flex; flex-direction: column; gap: 10px; }
+.chapter-card {
+  padding: 14px; background: var(--card); border-radius: 12px;
+  border: 1px solid var(--border); box-shadow: var(--shadow);
+  display: flex; justify-content: space-between; align-items: center;
+}
+.chapter-name { font-weight: 700; font-size: 15px; margin-bottom: 4px; }
+.chapter-progress { font-size: 12px; color: var(--muted); margin-bottom: 4px; }
+.chapter-boss { font-size: 12px; color: var(--danger); }
+.chapter-actions { display: flex; flex-direction: column; gap: 8px; }
+
+/* ─── 弹窗 ─── */
+.modal-overlay {
+  position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,.5); display: flex; align-items: center; justify-content: center;
+  z-index: 100; animation: fadeIn .2s ease;
+}
+.afk-modal, .gacha-modal {
+  background: var(--card); border-radius: 16px; padding: 24px;
+  max-width: 400px; width: 90%; box-shadow: 0 8px 32px rgba(0,0,0,.2);
+  text-align: center;
+}
+.afk-modal h3, .gacha-modal h3 { margin-bottom: 12px; color: var(--jade-deep); }
+.afk-rewards { margin: 16px 0; }
+.afk-reward { font-size: 18px; font-weight: 700; color: var(--gold); margin: 8px 0; }
+
+/* ─── 动画 ─── */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes slideIn {
+  from { opacity: 0; transform: translateX(-10px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+@keyframes flipIn {
+  from { opacity: 0; transform: rotateY(90deg); }
+  to { opacity: 1; transform: rotateY(0); }
+}
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(212,160,23,.3); }
+  50% { box-shadow: 0 0 0 8px rgba(212,160,23,0); }
+}
+
 /* ─── 移动端适配 ─── */
 @media (max-width: 480px) {
   .grid-menu { grid-template-columns: repeat(3, 1fr); }
-  .grid-item { font-size: 13px; padding: 12px 2px; }
+  .grid-item { font-size: 12px; padding: 12px 2px; }
+  .hero-card { flex-direction: column; gap: 8px; }
+  .hero-card-actions { flex-direction: row; flex-wrap: wrap; justify-content: center; }
+  .chapter-card { flex-direction: column; gap: 10px; align-items: flex-start; }
+  .shop-card, .task-card { flex-direction: column; gap: 8px; align-items: flex-start; }
 }

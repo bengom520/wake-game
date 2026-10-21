@@ -17,6 +17,7 @@ import afk from './api/afk';
 import chapters from './api/chapters';
 import tasks from './api/tasks';
 import save from './api/save';
+import gacha from './api/gacha';
 
 const app = new Hono<{ Bindings: Env; Variables: Vars }>();
 
@@ -46,6 +47,7 @@ app.route('/api/afk', afk);
 app.route('/api/chapters', chapters);
 app.route('/api/tasks', tasks);
 app.route('/api/save', save);
+app.route('/api/gacha', gacha);
 
 // 404 fallback
 app.notFound((c) => c.json({ ok: false, msg: 'API not found' }, 404));
