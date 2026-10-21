@@ -403,7 +403,7 @@ const App = {
       <!-- 英雄列表 -->
       <div class="hero-list">
         <div v-for="h in heroesList" :key="h.id" class="hero-card"
-             :style="{borderTop: `3px solid ${qualityColor(h.quality)}`}">
+             :style="{borderTop: '3px solid ' + qualityColor(h.quality)}">
           <div class="hero-card-left">
             <div class="hero-avatar-lg" :style="{background: qualityColor(h.quality)+'33'}">
               {{ h.name.charAt(0) }}
@@ -585,7 +585,7 @@ const App = {
           </div>
           <div class="chapter-actions">
             <button class="btn-primary" @click="doFight(ch.id, Math.min(ch.cleared_stage+1, 50))">
-              {{ ch.cleared_stage >= 50 ? ('已通关' + (ch.boss_cleared ? '' : '·打Boss')) : `挑战第 ${ch.cleared_stage+1} 关` }}
+              {{ ch.cleared_stage >= 50 ? ('已通关' + (ch.boss_cleared ? '' : '·打Boss')) : '挑战第 ' + (ch.cleared_stage+1) + ' 关' }}
             </button>
             <button v-if="ch.cleared_stage >= 50 && !ch.boss_cleared" class="btn-primary gold"
                     @click="fightBoss(ch.id)">
