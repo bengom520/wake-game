@@ -329,7 +329,7 @@ const App = {
       <!-- 挂机横幅 -->
       <div class="afk-banner" @click="collectAfk">
         <span>🏖️ 挂机收益待领取</span>
-        <button class="btn-primary btn-sm">领取</button>
+        <button class="btn-primary">领取</button>
       </div>
 
       <!-- 主功能宫格 -->
